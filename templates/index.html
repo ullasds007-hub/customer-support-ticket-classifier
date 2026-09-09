@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SupportAI Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+<body>
+
+    <!-- ===============================
+         CINEMATIC INTRO
+    ================================ -->
+
+    <div id="introScreen" class="intro-screen">
+
+        <div class="intro-grid"></div>
+
+        <div class="intro-content">
+
+            <div class="intro-logo">
+                <span class="logo-icon">⚡</span>
+            </div>
+
+            <h1 class="intro-title">
+                Support<span>AI</span>
+            </h1>
+
+            <p class="intro-subtitle">
+                Intelligent Ticket Classification System
+            </p>
+
+            <div class="scanner">
+                <div class="scanner-line"></div>
+            </div>
+
+            <p id="loadingText" class="loading-text">
+                Initializing AI Engine...
+            </p>
+
+            <div class="progress-container">
+                <div id="introProgress" class="intro-progress"></div>
+            </div>
+
+            <span id="progressNumber" class="progress-number">
+                0%
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- ===============================
+         MAIN APPLICATION
+    ================================ -->
+
+    <div class="app-shell">
+
+        <div class="main-layout">
+
+            <!-- ===============================
+                 SIDEBAR
+            ================================ -->
+
+            <aside class="sidebar">
+
+                <div class="sidebar-logo">
+
+                    <div class="sidebar-logo-icon">
+                        🎫
+                    </div>
+
+                    <div>
+                        <h2>SupportAI</h2>
+                        <span>Control Center</span>
+                    </div>
+
+                </div>
+
+
+                <nav class="sidebar-nav">
+
+                    <button
+                        class="nav-item active"
+                        data-section="dashboardSection"
+                    >
+                        <span>◈</span>
+                        Dashboard
+                    </button>
+
+                    <button
+                        class="nav-item"
+                        data-section="analyzeSection"
+                    >
+                        <span>◎</span>
+                        Analyze Ticket
+                    </button>
+
+                    <button
+                        class="nav-item"
+                        data-section="insightsSection"
+                    >
+                        <span>▥</span>
+                        Insights
+                    </button>
+
+                    <button
+                        class="nav-item"
+                        data-section="historySection"
+                    >
+                        <span>◷</span>
+                        History
+                    </button>
+
+                </nav>
+
+
+                <div class="sidebar-bottom">
+
+                    <div class="system-box">
+
+                        <span class="system-dot"></span>
+
+                        <div>
+                            <strong>AI Engine</strong>
+                            <p>Operational</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </aside>
+
+
+            <!-- ===============================
+                 CONTENT AREA
+            ================================ -->
+
+            <div class="content-area">
+
+                <!-- TOP BAR -->
+
+                <header class="topbar">
+
+                    <div>
+                        <h1>SupportAI</h1>
+
+                        <p>
+                            Smart Support Ticket Classification & Prioritization
+                        </p>
+                    </div>
+
+                    <div class="status-pill">
+
+                        <span class="status-dot"></span>
+
+                        Model Online
+
+                    </div>
+
+                </header>
+
+
+                <!-- ===============================
+                     DASHBOARD SECTION
+                ================================ -->
+
+                <section
+                    id="dashboardSection"
+                    class="page-section active-section"
+                >
+
+                    <div class="welcome-row">
+
+                        <div>
+
+                            <p class="eyebrow">
+                                AI SUPPORT OPERATIONS
+                            </p>
+
+                            <h1>
+                                Support Intelligence
+                                <span>Dashboard</span>
+                            </h1>
+
+                            <p>
+                                Real-time ticket classification,
+                                prioritization and model insights.
+                            </p>
+
+                        </div>
+
+                        <div class="live-card">
+
+                            <span class="live-dot"></span>
+
+                            LIVE SYSTEM
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- KPI CARDS -->
+
+                    <div class="dashboard-kpis">
+
+                        <div class="kpi-card tilt-card">
+
+                            <div class="kpi-top">
+
+                                <span>
+                                    Tickets Analyzed
+                                </span>
+
+                                <span class="kpi-icon">
+                                    ◎
+                                </span>
+
+                            </div>
+
+                            <h2 id="totalTickets">
+                                0
+                            </h2>
+
+                            <p>
+                                Current session
+                            </p>
+
+                        </div>
+
+
+                        <div class="kpi-card tilt-card">
+
+                            <div class="kpi-top">
+
+                                <span>
+                                    Model Accuracy
+                                </span>
+
+                                <span class="kpi-icon">
+                                    ◉
+                                </span>
+
+                            </div>
+
+                            <h2>
+                                85.78%
+                            </h2>
+
+                            <p>
+                                Linear SVM
+                            </p>
+
+                        </div>
+
+
+                        <div class="kpi-card tilt-card">
+
+                            <div class="kpi-top">
+
+                                <span>
+                                    High Priority
+                                </span>
+
+                                <span class="kpi-icon">
+                                    ▲
+                                </span>
+
+                            </div>
+
+                            <h2 id="highCount">
+                                0
+                            </h2>
+
+                            <p>
+                                Urgent tickets
+                            </p>
+
+                        </div>
+
+
+                        <div class="kpi-card tilt-card">
+
+                            <div class="kpi-top">
+
+                                <span>
+                                    Categories
+                                </span>
+
+                                <span class="kpi-icon">
+                                    ◆
+                                </span>
+
+                            </div>
+
+                            <h2>
+                                8
+                            </h2>
+
+                            <p>
+                                Classification classes
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ANALYTICS -->
+
+                    <div class="analytics-grid">
+
+                        <!-- PRIORITY DISTRIBUTION -->
+
+                        <div class="analytics-card tilt-card">
+
+                            <div class="analytics-header">
+
+                                <div>
+
+                                    <span>
+                                        Ticket Analytics
+                                    </span>
+
+                                    <h3>
+                                        Priority Distribution
+                                    </h3>
+
+                                </div>
+
+                                <span class="analytics-tag">
+                                    Live
+                                </span>
+
+                            </div>
+
+
+                            <div class="priority-chart">
+
+                                <div class="chart-row">
+
+                                    <span>
+                                        High
+                                    </span>
+
+                                    <div class="chart-track">
+
+                                        <div
+                                            id="highBar"
+                                            class="chart-bar high-bar"
+                                        ></div>
+
+                                    </div>
+
+                                    <strong id="highValue">
+                                        0
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="chart-row">
+
+                                    <span>
+                                        Medium
+                                    </span>
+
+                                    <div class="chart-track">
+
+                                        <div
+                                            id="mediumBar"
+                                            class="chart-bar medium-bar"
+                                        ></div>
+
+                                    </div>
+
+                                    <strong id="mediumValue">
+                                        0
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="chart-row">
+
+                                    <span>
+                                        Low
+                                    </span>
+
+                                    <div class="chart-track">
+
+                                        <div
+                                            id="lowBar"
+                                            class="chart-bar low-bar"
+                                        ></div>
+
+                                    </div>
+
+                                    <strong id="lowValue">
+                                        0
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ML PIPELINE -->
+
+                        <div class="analytics-card model-visual-card tilt-card">
+
+                            <div class="analytics-header">
+
+                                <div>
+
+                                    <span>
+                                        ML Pipeline
+                                    </span>
+
+                                    <h3>
+                                        Model Architecture
+                                    </h3>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="model-pipeline">
+
+                                <div class="pipeline-node">
+                                    Ticket
+                                </div>
+
+                                <div class="pipeline-line"></div>
+
+                                <div class="pipeline-node">
+                                    TF-IDF
+                                </div>
+
+                                <div class="pipeline-line"></div>
+
+                                <div class="pipeline-node active-node">
+                                    Linear SVM
+                                </div>
+
+                                <div class="pipeline-line"></div>
+
+                                <div class="pipeline-node">
+                                    Category
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ===============================
+                     ANALYZE SECTION
+                ================================ -->
+
+                <section
+                    id="analyzeSection"
+                    class="page-section"
+                >
+
+                    <div class="analyzer-card">
+
+                        <div class="section-heading">
+
+                            <div>
+
+                                <h2>
+                                    Analyze Support Ticket
+                                </h2>
+
+                                <p>
+                                    Enter a support issue and let the system classify it.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <textarea
+                            id="ticketInput"
+                            placeholder="Example: Please reset my password because I cannot access my account..."
+                        ></textarea>
+
+
+                        <div class="sample-section">
+
+                            <span class="sample-label">
+                                Quick samples
+                            </span>
+
+                            <div class="sample-buttons">
+
+                                <button
+                                    class="sample-btn"
+                                    data-ticket="Please reset my password"
+                                >
+                                    🔐 Password Reset
+                                </button>
+
+                                <button
+                                    class="sample-btn"
+                                    data-ticket="Production server is down and nobody can connect"
+                                >
+                                    🚨 Server Down
+                                </button>
+
+                                <button
+                                    class="sample-btn"
+                                    data-ticket="I need to purchase a new laptop for my department"
+                                >
+                                    💻 New Laptop
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="action-row">
+
+                            <button
+                                id="analyzeBtn"
+                                class="primary-btn"
+                            >
+                                Analyze Ticket
+                            </button>
+
+                            <button
+                                id="clearBtn"
+                                class="secondary-btn"
+                            >
+                                Clear
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            id="loadingBox"
+                            class="loading-box hidden"
+                        >
+
+                            <div class="spinner"></div>
+
+                            <span>
+                                Analyzing ticket...
+                            </span>
+
+                        </div>
+
+
+                        <p id="errorMessage"></p>
+
+                    </div>
+
+
+                    <!-- RESULT -->
+
+                    <div class="result-section">
+
+                        <div
+                            id="resultCard"
+                            class="result-card hidden"
+                        >
+
+                            <div class="result-header">
+
+                                <h2>
+                                    Analysis Result
+                                </h2>
+
+                                <span class="success-badge">
+                                    Completed
+                                </span>
+
+                            </div>
+
+
+                            <div class="result-grid">
+
+                                <div class="result-box">
+
+                                    <span class="result-label">
+                                        Category
+                                    </span>
+
+                                    <span
+                                        id="categoryResult"
+                                        class="result-value"
+                                    ></span>
+
+                                </div>
+
+
+                                <div class="result-box">
+
+                                    <span class="result-label">
+                                        Priority
+                                    </span>
+
+                                    <span
+                                        id="priorityResult"
+                                        class="priority-badge"
+                                    ></span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ===============================
+                     INSIGHTS SECTION
+                ================================ -->
+
+                <section
+                    id="insightsSection"
+                    class="page-section"
+                >
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <h2>
+                                Model Insights
+                            </h2>
+
+                            <p>
+                                Performance and classification information.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stats-grid">
+
+                        <div class="stat-card">
+
+                            <span class="stat-icon">
+                                🤖
+                            </span>
+
+                            <div>
+
+                                <p>
+                                    Best Model
+                                </p>
+
+                                <h3>
+                                    Linear SVM
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <span class="stat-icon">
+                                🎯
+                            </span>
+
+                            <div>
+
+                                <p>
+                                    Accuracy
+                                </p>
+
+                                <h3>
+                                    85.78%
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <span class="stat-icon">
+                                📊
+                            </span>
+
+                            <div>
+
+                                <p>
+                                    F1 Score
+                                </p>
+
+                                <h3>
+                                    85.79%
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <span class="stat-icon">
+                                🏷️
+                            </span>
+
+                            <div>
+
+                                <p>
+                                    Categories
+                                </p>
+
+                                <h3>
+                                    8
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="analytics-card">
+
+                        <div class="analytics-header">
+
+                            <div>
+
+                                <span>
+                                    Classification System
+                                </span>
+
+                                <h3>
+                                    Supported Categories
+                                </h3>
+
+                            </div>
+
+                        </div>
+
+                        <div class="category-grid">
+
+                            <span>Access</span>
+                            <span>Administrative rights</span>
+                            <span>HR Support</span>
+                            <span>Hardware</span>
+                            <span>Internal Project</span>
+                            <span>Miscellaneous</span>
+                            <span>Purchase</span>
+                            <span>Storage</span>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ===============================
+                     HISTORY SECTION
+                ================================ -->
+
+                <section
+                    id="historySection"
+                    class="page-section"
+                >
+
+                    <div class="history-card">
+
+                        <div class="section-heading">
+
+                            <div>
+
+                                <h2>
+                                    Recent Predictions
+                                </h2>
+
+                                <p>
+                                    Your latest analyzed tickets in this browser session.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            id="historyList"
+                            class="history-list"
+                        >
+
+                            <div class="empty-history">
+                                No tickets analyzed yet.
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script
+        src="{{ url_for('static', filename='script.js') }}"
+    ></script>
+
+</body>
+
+</html>
